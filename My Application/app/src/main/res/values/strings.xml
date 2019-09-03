@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_user_name">Имя пользователя</string>
+    <string name="nav_header_email">Электронный адрес</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_help">Справка</string>
+
+    <string name="menu_home">Домой</string>
+    <string name="menu_history">История</string>
+    <string name="menu_tools">Настройки</string>
+
+    <string name="contacts">Контактная информация</string>
+    <string name="menu_send">Форма обратной связи</string>
+    <string name="menu_info">О разработчике</string>
+    <string name="text">Мое приложение</string>
+</resources>
