@@ -1,5 +1,6 @@
 package com.grishko.myapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,17 +83,19 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        switch(id){
+            case R.id.nav_home:
 
-        }else if (id == R.id.nav_history) {
+            case R.id.nav_history:
 
-        } else if (id == R.id.nav_tools) {
+            case R.id.nav_tools:
 
-        } else if (id == R.id.nav_send) {
+            case R.id.nav_send:
 
-        } else if (id==R.id.nav_info){
-
+            case R.id.nav_info:
+                
         }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
