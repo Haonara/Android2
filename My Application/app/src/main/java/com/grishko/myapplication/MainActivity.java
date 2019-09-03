@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_send:
 
             case R.id.nav_info:
-                
+
         }
 
 
