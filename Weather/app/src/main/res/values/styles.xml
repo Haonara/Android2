@@ -1,0 +1,52 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="MyAppStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/stones</item>
+    </style>
+
+    <style name="MyButtonStyle">
+        <item name="android:background">@color/colorButton</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_common</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyTextviewCommonStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_common</item>
+    </style>
+
+    <style name="MyTextviewMainStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyCheckboxStyle">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_common</item>
+    </style>
+
+    <style name="MyEdittextStyle">
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_common</item>
+    </style>
+
+
+</resources>
