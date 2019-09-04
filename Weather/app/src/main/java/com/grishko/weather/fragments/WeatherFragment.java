@@ -64,7 +64,8 @@ public class WeatherFragment extends Fragment {
                 cityName.setText(parceling.getCityName());
 
                 if (parceling.isVisibilityWet()){
-                    wet.setText("");
+                    String str=getString(R.string.wet)+hum;
+                    wet.setText(str);
                     wet.setVisibility(View.VISIBLE);
                 }else{
                     wet.setVisibility(View.INVISIBLE);
