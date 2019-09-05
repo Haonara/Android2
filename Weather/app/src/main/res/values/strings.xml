@@ -2,7 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="weather">Погода</string>
     <string name="city">Свой город</string>
-    <string name="temperature">Текущая температура: 13&#x2103;</string>
+    <string name="temperature">Текущая температура: </string>
     <string name="button_settings">Настройки</string>
     <string name="button_ok">ОК</string>
     <string name="checkbox_wet">Влажность</string>

@@ -27,7 +27,9 @@ public class WeatherFragment extends Fragment {
 
     public static final String TAG="WeatherFragment";
     private SensorManager sensorManager;
+    private Sensor sensorTemperature;
     private Sensor sensorHumidity;
+    private float temp;
     private float hum;
 
     @Override
@@ -46,6 +48,7 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView cityName=view.findViewById(R.id.textView_city_name);
+        TextView temperature=view.findViewById(R.id.textView_temperature);
         TextView wet=view.findViewById(R.id.textView_wet);
         TextView wind=view.findViewById(R.id.textView_wind);
         Button settings=view.findViewById(R.id.button_settings);
@@ -53,6 +56,7 @@ public class WeatherFragment extends Fragment {
 
         sensorManager= (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SENSOR_SERVICE);
         if(sensorManager!=null){
+            sensorTemperature=sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
             sensorHumidity=sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         }
 
@@ -62,10 +66,12 @@ public class WeatherFragment extends Fragment {
 
             if(parceling!=null){
                 cityName.setText(parceling.getCityName());
+                String textTemp=getString(R.string.temperature)+temp;
+                temperature.setText(textTemp);
 
                 if (parceling.isVisibilityWet()){
-                    String str=getString(R.string.wet)+hum;
-                    wet.setText(str);
+                    String textWet=getString(R.string.wet)+hum;
+                    wet.setText(textWet);
                     wet.setVisibility(View.VISIBLE);
                 }else{
                     wet.setVisibility(View.INVISIBLE);
@@ -98,6 +104,18 @@ public class WeatherFragment extends Fragment {
         });
 
     }
+
+    private final SensorEventListener listenerTemperature = new SensorEventListener() {
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            temp=event.values[0];
+        }
+    };
+
     private final SensorEventListener listenerHumidity = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -113,6 +131,7 @@ public class WeatherFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (sensorManager != null) {
+            sensorManager.registerListener(listenerTemperature,sensorTemperature,SensorManager.SENSOR_DELAY_NORMAL);
             sensorManager.registerListener(listenerHumidity,sensorHumidity,SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
@@ -120,6 +139,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        sensorManager.unregisterListener(listenerTemperature,sensorTemperature);
         sensorManager.unregisterListener(listenerHumidity,sensorHumidity);
     }
 }
