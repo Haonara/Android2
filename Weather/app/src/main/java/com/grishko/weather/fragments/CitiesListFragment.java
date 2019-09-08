@@ -50,7 +50,7 @@ public class CitiesListFragment extends ListFragment {
         Bundle bundle= new Bundle();
         bundle.putSerializable(INDEX,cityIndexParcel);
 
-        if (getActivity()!=null){
+        if (getActivity()!= null){
             ((MainActivity)getActivity()).openFragment(SettingsFragment.TAG, bundle);
         }
 

@@ -55,16 +55,16 @@ public class WeatherFragment extends Fragment {
         Button story=view.findViewById(R.id.button_story);
 
         sensorManager= (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SENSOR_SERVICE);
-        if(sensorManager!=null){
+        if(sensorManager != null){
             sensorTemperature=sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
             sensorHumidity=sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         }
 
-        if(getArguments()!=null){
+        if(getArguments()!= null){
 
             Parceling parceling=(Parceling) getArguments().getSerializable(STATE);
 
-            if(parceling!=null){
+            if(parceling != null){
                 cityName.setText(parceling.getCityName());
                 String textTemp=getString(R.string.temperature)+temp;
                 temperature.setText(textTemp);
@@ -88,7 +88,7 @@ public class WeatherFragment extends Fragment {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getActivity()!=null){
+                if (getActivity()!= null){
                     ((MainActivity)getActivity()).openFragment(SettingsFragment.TAG, null);
                 }
             }
@@ -97,7 +97,7 @@ public class WeatherFragment extends Fragment {
         story.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getActivity()!=null){
+                if (getActivity()!= null){
                     ((MainActivity)getActivity()).openFragment(StoryFragment.TAG, null);
                 }
             }

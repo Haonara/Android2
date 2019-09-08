@@ -26,7 +26,7 @@ public class SettingsFragment extends Fragment {
 
     private Parceling parceling;
     public static final String STATE="STATE";
-    private EditText enter_city;
+    private EditText enterCity;
     private CheckBox wet;
     private CheckBox wind;
     private Button ok;
@@ -42,7 +42,7 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
 
-        enter_city=view.findViewById(R.id.editText_city_enter);
+        enterCity =view.findViewById(R.id.editText_city_enter);
         Button cities=view.findViewById(R.id.button_back);
         wind=view.findViewById(R.id.checkBox_wind);
         ok=view.findViewById(R.id.button_ok);
@@ -50,10 +50,10 @@ public class SettingsFragment extends Fragment {
 
 
 
-        if(getArguments()!=null){
+        if(getArguments()!= null){
             CityIndexParcel cityIndexParcel=(CityIndexParcel)getArguments().getSerializable(INDEX);
-            if (cityIndexParcel!=null){
-                enter_city.setText(cityIndexParcel.getCityName());
+            if (cityIndexParcel != null){
+                enterCity.setText(cityIndexParcel.getCityName());
             }
         }
 
@@ -61,17 +61,17 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String enteredCity=enter_city.getText().toString();
+                String enteredCity= enterCity.getText().toString();
 
                 if(enteredCity.length()<1){
                     Toast.makeText(getActivity(),"Wrong city name", Toast.LENGTH_SHORT).show();
                 }else{
-                    parceling=new Parceling(enter_city.getText().toString(), wet.isChecked(), wind.isChecked());
+                    parceling=new Parceling(enterCity.getText().toString(), wet.isChecked(), wind.isChecked());
 
                     Bundle bundle=new Bundle();
                     bundle.putSerializable(STATE,parceling);
 
-                    if (getActivity()!=null){
+                    if (getActivity()!= null){
                         ((MainActivity)getActivity()).openFragment(WeatherFragment.TAG, bundle);
                     }
                 }
@@ -81,7 +81,7 @@ public class SettingsFragment extends Fragment {
         cities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getActivity()!=null){
+                if (getActivity()!= null){
                     ((MainActivity)getActivity()).openFragment(CitiesListFragment.TAG, null);
                 }
             }

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState==null){
+        if (savedInstanceState == null){
             openFragment(SettingsFragment.TAG, null);
         }
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         Fragment fragmentToOpen;
 
-        if (fragmentTag==null){
+        if (fragmentTag == null){
             fragmentTag=SettingsFragment.TAG;
         }
 
