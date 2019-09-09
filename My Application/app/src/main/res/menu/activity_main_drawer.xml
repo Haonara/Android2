@@ -20,6 +20,7 @@
 
     <item android:title="@string/contacts">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
@@ -28,6 +29,7 @@
                 android:id="@+id/nav_info"
                 android:icon="@drawable/ic_menu_info"
                 android:title="@string/menu_info" />
+            </group>
         </menu>
     </item>
 

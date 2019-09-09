@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="weather">Погода</string>
+    <string name="city">Свой город</string>
+    <string name="temperature">Текущая температура: </string>
+    <string name="button_settings">Настройки</string>
+    <string name="button_ok">ОК</string>
+    <string name="checkbox_wet">Влажность</string>
+    <string name="checkbox_wind">Направление ветра</string>
+    <string name="wet">Текущая влажность: </string>
+    <string name="wind">Ветер южный</string>
+    <string name="back">Назад</string>
+    <string name="story">История</string>
+    <string name="cities_list">Выбор города</string>
+</resources>
