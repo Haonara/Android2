@@ -1,11 +1,15 @@
 package com.grishko.weather.fragments;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import com.grishko.weather.R;
 import com.grishko.weather.activities.MainActivity;
 import com.grishko.weather.model.Parceling;
+import com.grishko.weather.model.WeatherService;
 
 import java.util.Objects;
 
@@ -29,6 +34,9 @@ public class WeatherFragment extends Fragment {
     private SensorManager sensorManager;
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
+    private boolean binded=false;
+    private WeatherService weatherService;
+    private TextView status;
     private float temp;
     private float hum;
 
@@ -44,6 +52,21 @@ public class WeatherFragment extends Fragment {
         return inflater.inflate(R.layout.weather_fragment, container,false);
     }
 
+    ServiceConnection weatherServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            WeatherService.LocalWeatherBinder binder = (WeatherService.LocalWeatherBinder) service;
+            weatherService = binder.getService();
+            binded = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            binded = false;
+        }
+    };
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -51,6 +74,7 @@ public class WeatherFragment extends Fragment {
         TextView temperature=view.findViewById(R.id.textView_temperature);
         TextView wet=view.findViewById(R.id.textView_wet);
         TextView wind=view.findViewById(R.id.textView_wind);
+        status=view.findViewById(R.id.textView_status);
         Button settings=view.findViewById(R.id.button_settings);
         Button story=view.findViewById(R.id.button_story);
 
@@ -103,6 +127,12 @@ public class WeatherFragment extends Fragment {
             }
         });
 
+        Intent intent=new Intent(getActivity(),WeatherService.class);
+        getActivity().bindService(intent, weatherServiceConnection, Context.BIND_AUTO_CREATE);
+        //startWeather(intent);
+        //String weather= weatherService.getWeather();
+        //status.setText(weather);
+
     }
 
     private final SensorEventListener listenerTemperature = new SensorEventListener() {
@@ -141,5 +171,21 @@ public class WeatherFragment extends Fragment {
         super.onPause();
         sensorManager.unregisterListener(listenerTemperature,sensorTemperature);
         sensorManager.unregisterListener(listenerHumidity,sensorHumidity);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (binded) {
+            // Unbind Service
+            Objects.requireNonNull(getActivity()).unbindService(weatherServiceConnection);
+            binded = false;
+        }
+    }
+
+    public void startWeather (Intent intent){
+        Objects.requireNonNull(getActivity()).startService(intent);
+        String weather= weatherService.getWeather();
+        status.setText(weather);
     }
 }
