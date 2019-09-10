@@ -12,4 +12,5 @@
     <string name="back">Назад</string>
     <string name="story">История</string>
     <string name="cities_list">Выбор города</string>
+    <string name="status">Солнечно</string>
 </resources>
