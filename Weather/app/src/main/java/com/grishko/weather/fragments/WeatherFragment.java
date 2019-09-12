@@ -179,7 +179,7 @@ public class WeatherFragment extends Fragment {
         if (binded) {
             // Unbind Service
             Objects.requireNonNull(getActivity()).unbindService(weatherServiceConnection);
-            binded = false;
+            //binded = false;
         }
     }
 
